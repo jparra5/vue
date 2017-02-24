@@ -83,8 +83,8 @@ module.exports = function (config) {
     browsers: Object.keys(batch),
     customLaunchers: batch,
     reporters: process.env.CI
-      ? ['dots', 'saucelabs'] // avoid spamming CI output
-      : ['progress', 'saucelabs'],
+      ? ['junit', 'saucelabs'] // avoid spamming CI output
+      : ['junit', 'saucelabs'],
     sauceLabs: {
       testName: 'Vue.js unit tests',
       recordScreenshots: false,
@@ -97,7 +97,8 @@ module.exports = function (config) {
     captureTimeout: 300000,
     browserNoActivityTimeout: 300000,
     plugins: base.plugins.concat([
-      'karma-sauce-launcher'
+      'karma-sauce-launcher',
+      'karma-junit-reporter'
     ])
   }))
 }
